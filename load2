@@ -5,6 +5,11 @@ local playerGui = player:WaitForChild("PlayerGui")
 local StarterGui = game:GetService("StarterGui")
 StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.All, false)
 
+-- Tắt tiếng game trong lúc loading
+local SoundService = game:GetService("SoundService")
+local originalVolume = SoundService.Volume
+SoundService.Volume = 0
+
 -- Create ScreenGui
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "FullscreenLoadingUI"
@@ -26,14 +31,6 @@ background.Size = UDim2.new(1, 0, 1, 0)
 background.BackgroundColor3 = Color3.new(0, 0, 0)
 background.BorderSizePixel = 0
 background.Parent = screenGui
-
--- Background music
-local sound = Instance.new("Sound")
-sound.SoundId = "rbxassetid://88177938734627" -- Nhạc bạn chọn
-sound.Volume = 0.5
-sound.Looped = true
-sound.Playing = true
-sound.Parent = background
 
 -- Title: 🌴 GROW A GARDEN 🌴
 local titleLabel = Instance.new("TextLabel")
@@ -134,3 +131,5 @@ for i = 1, 100 do
 	percentText.Text = tostring(i) .. "%"
 	wait(totalDuration / 100)
 end
+
+
